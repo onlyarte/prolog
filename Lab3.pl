@@ -92,3 +92,18 @@ task50(1,9,9,8,C,R):-R is C,!.
 task50(A0,A1,A2,A3,C,R):-
         break(A0+A1+A2+A3,_,A4),
         task50(A1,A2,A3,A4,C+1,R),!.
+
+run:-
+    fill(9),
+    nl, nl, write('TASK 1'), nl,
+    findall(N, task1(N), B), write(B), nl, nl,
+    write('TASK 2'), nl,
+    task2(N2), write(N2), nl, nl,
+    write('TASK 3'), nl,
+    task3(N3), write(N3), nl, nl,
+    write('TASK 4'), nl,
+    task4(N4), write(N4), nl, nl,
+    write('TASK 5'), nl,
+    task5(N5), write(N5), nl, nl.
+
+:-initialization(run).

@@ -68,3 +68,15 @@ height(t(_,L,R),H) :- L = t(_,_,_), R = t(_,_,_),
     (   HL >= HR
     ->  H is HL+1
     ;   H is HR+1 ),!.
+
+
+run:-
+    nl, nl, write('AVL TREE: t(4, t(2, t(1, nil, nil), t(3, nil, nil)), t(6, t(5, nil, nil), t(7, nil, nil)))'), nl,
+    nl, write('TASK 1 AVL nodes'), nl,
+    findall(X, nodesAVL(t(4, t(2, t(1, nil, nil), t(3, nil, nil)), t(6, t(5, nil, nil), t(7, nil, nil))), X), BB), write(BB), nl, nl,
+    write('TASK 2 find 7 in the tree'), nl,
+    searchAVL(t(4, t(2, t(1, nil, nil), t(3, nil, nil)), t(6, t(5, nil, nil), t(7, nil, nil))), 7, N2), write(N2), nl, nl,
+    write('TASK 3 is AVL tree'), nl,
+    isAVL(t(4, t(2, t(1, nil, nil), t(3, nil, nil)), t(6, t(5, nil, nil), t(7, nil, nil)))), write('yes'), nl, nl.
+
+:-initialization(run).

@@ -76,7 +76,7 @@ countIN(t(_,L,R),C) :- L = t(_,_,_), R = t(_,_,_),
 TASK 5
 Visit all nodes of a 2-3 tree.
 
-is23(v2(d, v3(b ,c , v2(a, nil, nil), nil, nil), v2(e, nil, nil)), X).
+nodes23(v2(d, v3(b ,c , v2(a, nil, nil), nil, nil), v2(e, nil, nil)), X).
 
 X = a ? ;
 X = b ? ;
@@ -86,14 +86,14 @@ X = e ? ;
 no
 */
 
-is23(v2(_, L, _), X) :- is23(L, X). 
-is23(v2(X, _, _), X).
-is23(v2(_, _, R), X) :- is23(R, X).
-is23(v3(_, _, L, _, _), X) :- is23(L, X).
-is23(v3(X, _, _, _, _), X).
-is23(v3(_, X, _, _, _), X).
-is23(v3(_, _, _, M, _), X) :- is23(M, X).
-is23(v3(_, _, _, _, R), X) :- is23(R, X).
+nodes23(v2(_, L, _), X) :- nodes23(L, X). 
+nodes23(v2(X, _, _), X).
+nodes23(v2(_, _, R), X) :- nodes23(R, X).
+nodes23(v3(_, _, L, _, _), X) :- nodes23(L, X).
+nodes23(v3(X, _, _, _, _), X).
+nodes23(v3(_, X, _, _, _), X).
+nodes23(v3(_, _, _, M, _), X) :- nodes23(M, X).
+nodes23(v3(_, _, _, _, R), X) :- nodes23(R, X).
 
 /*
 TASK 6
@@ -140,3 +140,26 @@ yes
 is23(nil).
 is23(v2(_, L, R)) :- is23(L), is23(R).
 is23(v3(_, _, L, M, R)) :- is23(L), is23(M), is23(R).
+
+run:-
+    nl, nl, write('BINARY TREE FOR TASKS 1-4: t(a,t(b,t(d,nil,nil),t(e,nil,nil)),t(c,nil,t(f,t(g,nil,nil),nil)))'),
+    nl, nl, write('TASK 1 BT to list'), nl,
+    findall(L, nodesLR(t(a,t(b,t(d,nil,nil),t(e,nil,nil)),t(c,nil,t(f,t(g,nil,nil),nil))), L), ALL), write(ALL), nl, nl,
+    write('TASK 2 count BT leaves'), nl,
+    write('N = '), countLeaves(t(a,t(b,t(d,nil,nil),t(e,nil,nil)),t(c,nil,t(f,t(g,nil,nil),nil))), C), write(C), nl, nl,
+    write('TASK 3 BT height'), nl,
+    write('H = '), height(t(a,t(b,t(d,nil,nil),t(e,nil,nil)),t(c,nil,t(f,t(g,nil,nil),nil))), H), write(H), nl, nl,
+    write('TASK 4 count internal nodes'), nl,
+    write('N = '), countIN(t(a,t(b,t(d,nil,nil),t(e,nil,nil)),t(c,nil,t(f,t(g,nil,nil),nil))), C0), write(C0), nl, nl,
+    write('2-3 TREE FOR TASKS 5-6: v2(d, v3(b ,c , v2(a, nil, nil), nil, nil), v2(e, nil, nil))'), nl, nl,
+    write('TASK 5 2-3 tree to list'), nl,
+    findall(X, nodes23(v2(d, v3(b ,c , v2(a, nil, nil), nil, nil), v2(e, nil, nil)), X), ALL0), write(ALL0), nl, nl,
+    write('TAKS 6 2-3 search'), nl,
+    write('find e'),
+    search23(v2(d, v3(b ,c , v2(a, nil, nil), nil, nil), v2(e, nil, nil)), e, G2), write(G2), nl, nl,
+    write('TASK 7 is BT tree 1-4'), nl,
+    isBT(t(a,t(b,t(d,nil,nil),t(e,nil,nil)),t(c,nil,t(f,t(g,nil,nil),nil)))), write('yes'), nl, nl,
+    write('TASK 7 is 2-3 tree 5-6'), nl,
+    is23(v2(d, v3(b ,c , v2(a, nil, nil), nil, nil), v2(e, nil, nil))), write('yes'), nl, nl.
+
+:-initialization(run).

@@ -97,3 +97,23 @@ task50([[MH | []] | MT],[VecH | []], VecT, [ResH | ResT]):-
 task50([[MH | MT] | MT1], [VecH | VecT], VecT1, [Z | ZT]):-
         task50([MT | MT1], VecT, VecT1, [Z1 | ZT]),
         Z is VecH * MH + Z1,!.
+
+run:-
+    fill(9),
+    nl, nl, write('TASK 1'), nl,
+    write('input: [1,-1,2,-90]'), nl,
+    task1([1,-1,2,-90],N1), write(N1), nl, nl,
+    write('TASK 2'), nl,
+    write('input: [1,2,3,4,2,3,3,3,4] | 3 => change_done'), nl,
+    task2([1,2,3,4,2,3,3,3,4],3,N2), write(N2), nl, nl,
+    write('TASK 3'), nl,
+    write('input: [1,5,34,48]'), nl,
+    task3([1,5,34,48], N3), write(N3), nl, nl,
+    write('TASK 4'), nl,
+    write('input: [1,2,3,4,5]'), nl,
+    task4([1,2,3,4,5],N4), write(N4), nl, nl,
+    write('TASK 5'), nl,
+    write('input: [[2,-3],[4,7]] * [2,3]'), nl,
+    task5([[2,-3],[4,7]],[2,3],N5), write(N5), nl, nl.
+
+:-initialization(run).

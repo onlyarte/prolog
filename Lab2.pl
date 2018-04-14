@@ -46,3 +46,30 @@ ss0(N, S, C, R, P):-
     P0 is P*C,
     R0 is R+(1/P0),
     ss0(N, S, C0, R0, P0),!.
+
+
+run:-
+    nl, nl, write('TASK 1 DIV. 18 / 4 = D [M]'),
+    div(18,4,D,M), nl,
+    write('D = '), write(D), nl, write('M = '), write(M), nl, nl,
+    write('TASK 1 DIV. 20 / 8 = D [M]'),
+    div(20,8,D0,M0), nl,
+    write('D = '), write(D0), nl, write('M = '), write(M0), nl, nl,
+    write('TASK 2 POW. 2^8 = P'),
+    pow(2,8,P), nl,
+    write('P = '), write(P), nl, nl,
+    write('TASK 2 FAST POW. 3^3 = P'),
+    pow(3,3,P0), nl,
+    write('P = '), write(P0), nl, nl,
+    write('TASK 3 FIBS SERIES'), nl,
+    write('9th = '), fib(9,N0), write(N0), nl, write('10th = '), fib(10,N1), write(N1), nl, write('11th = '), fib(11,N2), write(N2), nl, nl,
+    write('TASK 3 FAST FIBS SERIES'), nl,
+    write('9th = '), fastFib(9,N01), write(N01), nl, write('10th = '), fastFib(10,N11), write(N11), nl, write('11th = '), fastFib(11,N21), write(N21), nl, nl,
+    write('TASK 4 FACTORS'), nl,
+    write('18 = '), factors(18, LL), write(LL), nl,
+    write('23 = '), factors(23, LL1), write(LL1), nl, nl,
+    write('TASK 5 SERIES 1/1! + ... + 1/N!'), nl,
+    write('N = 10; SUM = '), sum_series(10, NNN), write(NNN), nl,
+    write('N = 12; SUM = '), sum_series(12, NNNM), write(NNNM), nl, nl.
+
+:-initialization(run).
